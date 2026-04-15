@@ -1,4 +1,4 @@
-package ru.yandex.practicum;
+package ru.yandex.practicum.exceptions;
 
 public class DictionaryLoadException extends WordleException {
 
@@ -10,4 +10,3 @@ public class DictionaryLoadException extends WordleException {
         super(message, cause);
     }
 }
-

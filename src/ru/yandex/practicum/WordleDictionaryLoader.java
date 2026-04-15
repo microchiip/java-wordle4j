@@ -1,5 +1,7 @@
 package ru.yandex.practicum;
 
+import ru.yandex.practicum.exceptions.DictionaryLoadException;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -11,7 +13,6 @@ import java.util.List;
 
 public class WordleDictionaryLoader {
 
-
     public WordleDictionary load(String filename, PrintWriter log) throws DictionaryLoadException {
         File file = new File(filename);
         if (!file.exists()) {
@@ -19,6 +20,12 @@ public class WordleDictionaryLoader {
         }
 
         List<String> words = new ArrayList<>();
+
+        try {
+            StandardCharsets.UTF_8.newEncoder();
+        } catch (UnsupportedOperationException e) {
+            System.out.println("Предупреждение: UTF-8 не поддерживается в этой среде выполнения.");
+        }
 
         try (BufferedReader reader = new BufferedReader(
                 new FileReader(file, StandardCharsets.UTF_8))) {
@@ -57,3 +64,4 @@ public class WordleDictionaryLoader {
         return true;
     }
 }
+
